@@ -30,6 +30,12 @@ class _HomeState extends State<Home> {
           '꽃피우기',
           style: TextStyle(color: Colors.white),
         ),
+         leading: IconButton(
+          onPressed: () => Scaffold.of(context).openDrawer() ,
+          icon: const Icon(Icons.menu,
+            color: Colors.white,
+          ),
+          ),
         actions: [
           IconButton(
               onPressed: () {
