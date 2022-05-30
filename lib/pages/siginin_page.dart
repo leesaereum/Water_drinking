@@ -49,6 +49,8 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
+                  //inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'),),], // 해당 정규식 안되서 일단 키보드 타입만 변경
+                  // 정규식 넣을 때마다 입력안되어서 일단 주석처리 해둠
                   controller: idController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -59,6 +61,7 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),], // 
                   controller: nickController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -69,6 +72,7 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),],
                   controller: pwController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
