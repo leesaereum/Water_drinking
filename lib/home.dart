@@ -71,8 +71,11 @@ class _HomeState extends State<Home> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
+      //종류가 물일 때만 용량 더해지기 
+      if(Static.water_kind == "물"){
       for (int i = 0; i < result.length; i++) {
         sum += int.parse(result[i]['volume']);
+      }
       }
       Static.water = sum;
       if (Static.water < Static.goal * 0.25) {

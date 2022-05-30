@@ -5,4 +5,6 @@ class Static {
   static String id = '';
   static String name = '';
   static String date = '';
+  static String water_kind = '';
+  static String water_volume = '';
 }
