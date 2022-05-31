@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:water_drinking_app/pages/insert.dart';
 import 'package:water_drinking_app/pages/login_page.dart';
 import 'package:water_drinking_app/static.dart';
@@ -30,6 +31,13 @@ class _HomeState extends State<Home> {
           '꽃피우기',
           style: TextStyle(color: Colors.white),
         ),
+        leading: IconButton(
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -54,6 +62,25 @@ class _HomeState extends State<Home> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
+            child: LinearPercentIndicator(
+              width: 300.0,
+              animation: true,
+              animationDuration: 1000,
+              lineHeight: 20.0,
+              leading: const Text('0ml'),
+              trailing: const Text('2000ml'),
+              percent: Static.water.toDouble() / Static.goal.toDouble(),
+              center: Static.id.isEmpty
+                  ? const Text('0%')
+                  : Text('${Static.water / Static.goal * 100}%'),
+              progressColor: Colors.red,
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
           Image.asset(Static.image),
           Text(nickname),
         ],
@@ -71,12 +98,11 @@ class _HomeState extends State<Home> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
-      //종류가 물일 때만 용량 더해지기 
-      if(Static.water_kind == "물"){
+      //종류가 물일 때만 용량 더해지기
       for (int i = 0; i < result.length; i++) {
-        sum += int.parse(result[i]['volume']);
+        if (result[i]['kind'] == '물') sum += int.parse(result[i]['volume']);
       }
-      }
+
       Static.water = sum;
       if (Static.water < Static.goal * 0.25) {
         Static.image = 'images/1.jpg';
