@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:water_drinking_app/pages/insert.dart';
 import 'package:water_drinking_app/pages/login_page.dart';
 import 'package:water_drinking_app/static.dart';
@@ -19,9 +20,12 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     readWater();
+    ratio = 0;
   }
 
   String nickname = Static.name;
+  late double ratio;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +58,19 @@ class _HomeState extends State<Home> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: LinearPercentIndicator(
+                  width: MediaQuery.of(context).size.width - 50,
+                  animation: true,
+                  lineHeight: 30.0,
+                  animationDuration: 2000,
+                  percent: 0.9, // 값 넣기 
+                  center: Text("90%"), //값 넣기,
+                  //linearStrokeCap: ,
+                  progressColor: Colors.blueAccent,
+                ),
+          ),
           Image.asset(Static.image),
           Text(nickname),
         ],
@@ -91,6 +108,7 @@ class _HomeState extends State<Home> {
       }
     });
   }
+
 
   notlogin() {
     showDialog(
