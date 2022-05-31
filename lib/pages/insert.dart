@@ -25,284 +25,286 @@ class _InsertState extends State<Insert> {
       appBar: AppBar(
         title: const Text('물 주기'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              "Today",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              date,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w200),
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            SingleChildScrollView(
-              //스크롤
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                "Today",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                date,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w200),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              SingleChildScrollView(
+                //스크롤
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //물 버튼
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_kind = "물";
+                        });
+                      },
+                      label: const Text("물"),
+                      icon: const Icon(Icons.water_drop_outlined),
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.teal.withOpacity(0.5);
+                            if (states.contains(MaterialState.focused) ||
+                                states.contains(MaterialState.pressed))
+                              return Colors.teal.withOpacity(0.5);
+                            return null; // Defer to the widget's default.
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    //커피버튼
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_kind = "커피";
+                        });
+                      },
+                      label: const Text("커피"),
+                      icon: const Icon(Icons.coffee),
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.teal.withOpacity(0.5);
+                            if (states.contains(MaterialState.focused) ||
+                                states.contains(MaterialState.pressed))
+                              return Colors.teal.withOpacity(0.5);
+                            return null; // Defer to the widget's default.
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    //탄산버튼
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_kind = "탄산";
+                        });
+                      },
+                      label: const Text("탄산"),
+                      icon: const Icon(Icons.local_drink_rounded),
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.teal.withOpacity(0.5);
+                            if (states.contains(MaterialState.focused) ||
+                                states.contains(MaterialState.pressed))
+                              return Colors.teal.withOpacity(0.5);
+                            return null; // Defer to the widget's default.
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    //차 버튼
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_kind = "차";
+                        });
+                      },
+                      label: const Text("차"),
+                      icon: const Icon(Icons.emoji_food_beverage),
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.teal.withOpacity(0.5);
+                            if (states.contains(MaterialState.focused) ||
+                                states.contains(MaterialState.pressed))
+                              return Colors.teal.withOpacity(0.5);
+                            return null; // Defer to the widget's default.
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    //주스 버튼
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_kind = "주스";
+                        });
+                      },
+                      label: const Text("주스"),
+                      icon: const Icon(Icons.wine_bar),
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.teal.withOpacity(0.5);
+                            if (states.contains(MaterialState.focused) ||
+                                states.contains(MaterialState.pressed))
+                              return Colors.teal.withOpacity(0.5);
+                            return null; // Defer to the widget's default.
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  //물 버튼
-                  ElevatedButton.icon(
+                  TextButton.icon(
                     onPressed: () {
-                      setState(() {
-                        Static.water_kind = "물";
-                      });
+                      // showdialog로 용량 바꾸기
+                      volumeDialog(context);
                     },
-                    label: const Text("물"),
-                    icon: const Icon(Icons.water_drop_outlined),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.teal.withOpacity(0.5);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.teal.withOpacity(0.5);
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  //커피버튼
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        Static.water_kind = "커피";
-                      });
-                    },
-                    label: const Text("커피"),
-                    icon: const Icon(Icons.coffee),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.teal.withOpacity(0.5);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.teal.withOpacity(0.5);
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  //탄산버튼
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        Static.water_kind = "탄산";
-                      });
-                    },
-                    label: const Text("탄산"),
-                    icon: const Icon(Icons.local_drink_rounded),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.teal.withOpacity(0.5);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.teal.withOpacity(0.5);
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  //차 버튼
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        Static.water_kind = "차";
-                      });
-                    },
-                    label: const Text("차"),
-                    icon: const Icon(Icons.emoji_food_beverage),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.teal.withOpacity(0.5);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.teal.withOpacity(0.5);
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  //주스 버튼
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        Static.water_kind = "주스";
-                      });
-                    },
-                    label: const Text("주스"),
-                    icon: const Icon(Icons.wine_bar),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.teal.withOpacity(0.5);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.teal.withOpacity(0.5);
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                    ),
+                    label: Text("컵 바꾸기"),
+                    icon: const Icon(Icons.settings),
+                    style: TextButton.styleFrom(primary: Colors.black87),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton.icon(
-                  onPressed: () {
-                    // showdialog로 용량 바꾸기
-                    volumeDialog(context);
-                  },
-                  label: Text("컵 바꾸기"),
-                  icon: const Icon(Icons.settings),
-                  style: TextButton.styleFrom(primary: Colors.black87),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_volume = "100";
+                        });
+                      },
+                      child: const Text(
+                        "100ml",
+                        style: TextStyle(
+                          fontSize: 22,
+                        ),
+                      )),
+                  TextButton(
                     onPressed: () {
                       setState(() {
-                        Static.water_volume = "100";
+                        Static.water_volume = "200";
                       });
                     },
                     child: const Text(
-                      "100ml",
-                      style: TextStyle(
-                        fontSize: 22,
-                      ),
-                    )),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      Static.water_volume = "200";
-                    });
-                  },
-                  child: const Text(
-                    "200ml",
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        Static.water_volume = "300";
-                      });
-                    },
-                    child: const Text(
-                      "300ml",
+                      "200ml",
                       style: TextStyle(fontSize: 22),
-                    )),
-              ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OutlinedButton(
-                    onPressed: () {
-                      //
-                    },
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.teal[50],
-                      minimumSize: const Size(80, 40),
-                      side: const BorderSide(
-                        color: Colors.teal,
-                        width: 1.5,
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        setState(() {
+                          Static.water_volume = "300";
+                        });
+                      },
+                      child: const Text(
+                        "300ml",
+                        style: TextStyle(fontSize: 22),
+                      )),
+                ],
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                      onPressed: () {
+                        //
+                      },
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.teal[50],
+                        minimumSize: const Size(80, 40),
+                        side: const BorderSide(
+                          color: Colors.teal,
+                          width: 1.5,
+                        ),
                       ),
-                    ),
-                    child: Text("${Static.water_kind}",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 18,
-                    ),
-                    ))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OutlinedButton(
-                    onPressed: () {
-                      //
-                    },
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.teal[50],
-                      minimumSize: const Size(80, 40),
-                      side: const BorderSide(
-                        color: Colors.teal,
-                        width: 1.5,
+                      child: Text("${Static.water_kind}",
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 18,
                       ),
-                    ),
-                    child: Text("${Static.water_volume}ml",
-                    style: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 18,
-                    ),
-                    ))
-              ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                insertWater();
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.teal[300],
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                minimumSize: Size(100, 50),
-                //textStyle:Colors.black87,
+                      ))
+                ],
               ),
-              child: const Text('더 하 기',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                      onPressed: () {
+                        //
+                      },
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.teal[50],
+                        minimumSize: const Size(80, 40),
+                        side: const BorderSide(
+                          color: Colors.teal,
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Text("${Static.water_volume}ml",
+                      style: const TextStyle(
+                        color: Colors.black87,
+                        fontSize: 18,
+                      ),
+                      ))
+                ],
               ),
+              const SizedBox(
+                height: 50,
               ),
-            )
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  insertWater();
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal[300],
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  minimumSize: Size(100, 50),
+                  //textStyle:Colors.black87,
+                ),
+                child: const Text('더 하 기',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600
+                ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
