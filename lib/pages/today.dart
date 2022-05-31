@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:water_drinking_app/static.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 class Today extends StatefulWidget {
   const Today({Key? key}) : super(key: key);
@@ -43,9 +42,7 @@ class _TodayState extends State<Today> {
                             ? const EdgeInsets.fromLTRB(25, 30, 25, 0)
                             : const EdgeInsets.fromLTRB(25, 10, 25, 0),
                         child: Card(
-                          color: list[index]['kind'] == "물"
-                          ? Colors.blueAccent
-                          : Colors.grey,
+                          color: Colors.amberAccent[100],
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(
