@@ -23,6 +23,7 @@ class _HomeState extends State<Home> {
   }
 
   String nickname = Static.name;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,21 +69,26 @@ class _HomeState extends State<Home> {
               width: 300.0,
               animation: true,
               animationDuration: 1000,
-              lineHeight: 20.0,
+              lineHeight: 40.0,
               leading: const Text('0ml'),
               trailing: const Text('2000ml'),
-              percent: Static.water.toDouble() / Static.goal.toDouble(),
+              percent: (Static.water.toDouble() / Static.goal.toDouble()) > 1
+                  ? 1
+                  : Static.water.toDouble() / Static.goal.toDouble(),
               center: Static.id.isEmpty
                   ? const Text('0%')
-                  : Text('${Static.water / Static.goal * 100}%'),
-              progressColor: Colors.red,
+                  : Text(
+                      '${(Static.water / Static.goal * 100).roundToDouble()}%'),
+              progressColor:
+                  (Static.water / Static.goal * 100).roundToDouble() > 50
+                      ? Colors.lightBlue
+                      : Colors.redAccent,
             ),
           ),
           const SizedBox(
             height: 30,
           ),
           Image.asset(Static.image),
-          Text(nickname),
         ],
       )),
     );
