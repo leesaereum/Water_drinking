@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
               lineHeight: 40.0,
               leading: const Text('0ml'),
               trailing: const Text('2000ml'),
-              percent: (Static.water.toDouble() / Static.goal.toDouble()) > 1
+             percent: (Static.water.toDouble() / Static.goal.toDouble()) > 1
                   ? 1
                   : Static.water.toDouble() / Static.goal.toDouble(),
               center: Static.id.isEmpty
