@@ -148,8 +148,14 @@ class _CalendarState extends State<Calendar> {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
       for(int i=0;i<result.length;i++){
-        if(double.parse(result[i]['sum'])>=Static.goal){
-          data.add(result[i]);
+        if(Static.goal!=null){
+          if(double.parse(result[i]['sum'])>=Static.goal){
+            data.add(result[i]);
+          }
+        }else{
+          if(double.parse(result[i]['sum'])>=2000){
+            data.add(result[i]);
+          }
         }
       }
     });
