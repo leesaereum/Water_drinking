@@ -64,6 +64,7 @@ class _SigninPageState extends State<SigninPage> {
                 ),
                 TextField(
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),], 
+                  maxLength: 10,
                   controller: nickController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -75,6 +76,7 @@ class _SigninPageState extends State<SigninPage> {
                 ),
                 TextField(
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),],
+                  maxLength: 10,
                   controller: pwController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
