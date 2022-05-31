@@ -144,6 +144,7 @@ class _CalendarState extends State<Calendar> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
+      print(result);
       for (int i = 0; i < result.length; i++) {
         if (Static.goal != null) {
           if (double.parse(result[i]['sum']) >= Static.goal) {
