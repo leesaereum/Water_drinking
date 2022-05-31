@@ -77,24 +77,31 @@ class _InsertState extends State<Insert> {
                   ),
                   //커피버튼
                   ElevatedButton.icon(
-                    onPressed: () {
-                      Static.water_kind = "커피";
-                    },
-                    label: const Text("커피"),
-                    icon: const Icon(Icons.coffee),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.teal.withOpacity(0.5);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.teal.withOpacity(0.5);
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                    ),
-                  ),
+                      onPressed: () {
+                        Static.water_kind = "커피";
+                      },
+                      label: const Text("커피"),
+                      icon: const Icon(Icons.coffee),
+                      style: ButtonStyle(
+                        // overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                        //   (Set<MaterialState> states) {
+                        //     if (states.contains(MaterialState.hovered))
+                        //       return Colors.teal.withOpacity(0.5);
+                        //     if (states.contains(MaterialState.focused) ||
+                        //         states.contains(MaterialState.pressed))
+                        //       return Colors.teal.withOpacity(0.5);
+                        //     return null; // Defer to the widget's default.
+                        //   },
+                        // ),
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color?>(
+                                (Set<MaterialState> states) {
+                          if (Static.water_kind == '커피')
+                            return Colors.blue;
+                          else
+                            return Colors.amber;
+                        }),
+                      )),
                   const SizedBox(
                     width: 10,
                   ),
@@ -151,7 +158,7 @@ class _InsertState extends State<Insert> {
                     },
                     label: const Text("주스"),
                     icon: const Icon(Icons.wine_bar),
-                     style: ButtonStyle(
+                    style: ButtonStyle(
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.hovered))

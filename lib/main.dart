@@ -142,17 +142,19 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
               leading: const Icon(Icons.calendar_month),
               title: const Text('한달의 기록'),
             ),
-            if(Static.id.isNotEmpty)  // id가 isNotEmpty이면 마이페이지 화면보이기
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const Mypage(),),
+            if (Static.id.isNotEmpty) // id가 isNotEmpty이면 마이페이지 화면보이기
+              ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Mypage(),
+                    ),
                   );
-              },
-              leading: const Icon(Icons.settings),
-              title: const Text('마이페이지'),
-            )
+                },
+                leading: const Icon(Icons.settings),
+                title: const Text('마이페이지'),
+              )
           ],
         ),
       ),
