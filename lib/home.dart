@@ -27,15 +27,15 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          '꽃피우기',
-          style: TextStyle(color: Colors.white),
+        title: Image.asset(
+          'images/logo.png',
+          width: 100,
         ),
         leading: IconButton(
           onPressed: () => Scaffold.of(context).openDrawer(),
           icon: const Icon(
             Icons.menu,
-            color: Colors.white,
+            color: Colors.black87,
           ),
         ),
         actions: [
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
               },
               icon: const Icon(
                 Icons.add,
-                color: Colors.white,
+                color: Colors.black87,
               ))
         ],
         elevation: 0,

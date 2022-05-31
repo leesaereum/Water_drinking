@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Login temp_screen'),
+          title: const Text('Login'),
           backgroundColor: Colors.amber,
           foregroundColor: Colors.black,
         ),
@@ -32,13 +32,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.brown[200],
-                radius: 50,
-                child: const Icon(
-                  Icons.free_breakfast,
-                  size: 50,
-                ),
+              Image.asset(
+                'images/logo2.png',
+                width: 300,
               ),
               const SizedBox(
                 height: 30,
@@ -104,9 +100,9 @@ class _LoginPageState extends State<LoginPage> {
       var result = jSON['result'];
       if (result[0]['id'] == '실패') {
         login_fail();
-      }else if(result[0]['leave']!=null){
-        cantLogin(); 
-      }else {
+      } else if (result[0]['leave'] != null) {
+        cantLogin();
+      } else {
         Static.id = result[0]['id'];
         Static.name = result[0]['name'];
         // Static.leave = result[0]['leave'];
