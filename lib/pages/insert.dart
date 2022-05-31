@@ -273,8 +273,8 @@ class _InsertState extends State<Insert> {
                         width: 1.5,
                       ),
                     ),
-                    child: Text("${Static.water_volume}",
-                    style: TextStyle(
+                    child: Text("${Static.water_volume}ml",
+                    style: const TextStyle(
                       color: Colors.black87,
                       fontSize: 18,
                     ),
@@ -289,7 +289,7 @@ class _InsertState extends State<Insert> {
                 insertWater();
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.teal[400],
+                primary: Colors.teal[300],
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 minimumSize: Size(100, 50),
