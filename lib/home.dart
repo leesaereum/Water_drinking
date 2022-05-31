@@ -23,20 +23,22 @@ class _HomeState extends State<Home> {
   }
 
   String nickname = Static.name;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          '꽃피우기',
-          style: TextStyle(color: Colors.white),
+        title: Image.asset(
+          'images/logo.png',
+          width: 100,
         ),
-         leading: IconButton(
-          onPressed: () => Scaffold.of(context).openDrawer() ,
-          icon: const Icon(Icons.menu,
-            color: Colors.white,
+        leading: IconButton(
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.black87,
           ),
-          ),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -52,7 +54,7 @@ class _HomeState extends State<Home> {
               },
               icon: const Icon(
                 Icons.add,
-                color: Colors.white,
+                color: Colors.black87,
               ))
         ],
         elevation: 0,
@@ -67,19 +69,26 @@ class _HomeState extends State<Home> {
               width: 300.0,
               animation: true,
               animationDuration: 1000,
-              lineHeight: 20.0,
+              lineHeight: 40.0,
               leading: const Text('0ml'),
               trailing: const Text('2000ml'),
-              percent: Static.water.toDouble()/Static.goal.toDouble(),
-              center: Static.id.isEmpty ? const Text('0%'): Text('${Static.water/Static.goal*100}%'),
-              progressColor: Colors.red,
+              percent: (Static.water.toDouble() / Static.goal.toDouble()) > 1
+                  ? 1
+                  : Static.water.toDouble() / Static.goal.toDouble(),
+              center: Static.id.isEmpty
+                  ? const Text('0%')
+                  : Text(
+                      '${(Static.water / Static.goal * 100).roundToDouble()}%'),
+              progressColor:
+                  (Static.water / Static.goal * 100).roundToDouble() > 50
+                      ? Colors.lightBlue
+                      : Colors.redAccent,
             ),
           ),
           const SizedBox(
             height: 30,
           ),
           Image.asset(Static.image),
-          Text(nickname),
         ],
       )),
     );
@@ -95,12 +104,11 @@ class _HomeState extends State<Home> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
-      //종류가 물일 때만 용량 더해지기 
-      if(Static.water_kind == "물"){
+      //종류가 물일 때만 용량 더해지기
       for (int i = 0; i < result.length; i++) {
-        sum += int.parse(result[i]['volume']);
+        if (result[i]['kind'] == '물') sum += int.parse(result[i]['volume']);
       }
-      }
+
       Static.water = sum;
       if (Static.water < Static.goal * 0.25) {
         Static.image = 'images/1.jpg';

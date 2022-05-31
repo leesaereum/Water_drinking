@@ -43,10 +43,7 @@ class _SigninPageState extends State<SigninPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Sign-In',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                ),
+                Image.asset('images/logo.png'),
                 const SizedBox(
                   height: 20,
                 ),
@@ -63,7 +60,11 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
-                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),], 
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^[ㄱ-ㅎ가-힣0-9a-zA-Z\s+]+$')),
+                  ],
+                  maxLength: 10,
                   controller: nickController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -74,7 +75,11 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
-                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),],
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^[a-zA-Z0-9]+$')),
+                  ],
+                  maxLength: 10,
                   controller: pwController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -134,9 +139,9 @@ class _SigninPageState extends State<SigninPage> {
 
       if (ids == idController.text) {
         errorSnackbar();
-        if(Static.leave.isNotEmpty){
-            cantSignin();
-          }
+        if (Static.leave.isNotEmpty) {
+          cantSignin();
+        }
       } else {
         join();
       }
@@ -151,7 +156,7 @@ class _SigninPageState extends State<SigninPage> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       join_result = JSON['result'];
-  
+
       if (join_result == 'OK') {
         sucessJoin();
       } else {
@@ -201,6 +206,5 @@ class _SigninPageState extends State<SigninPage> {
         backgroundColor: Colors.grey,
       ),
     );
-   }
-
+  }
 }

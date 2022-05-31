@@ -56,14 +56,25 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
           controller: controller,
           children: const [Home(), Today(), Calendar()]),
       bottomNavigationBar: Container(
+        height: 80,
         color: Colors.amber,
         child: TabBar(
             controller: controller,
             indicatorColor: Colors.amber,
+            labelColor: Colors.black87,
             tabs: const [
-              Tab(icon: Icon(Icons.looks_one, color: Colors.white)),
-              Tab(icon: Icon(Icons.looks_two, color: Colors.white)),
-              Tab(icon: Icon(Icons.looks_3, color: Colors.white)),
+              Tab(
+                icon: Icon(Icons.local_florist, color: Colors.black87),
+                text: '꽃피우기',
+              ),
+              Tab(
+                icon: Icon(Icons.water_drop, color: Colors.black87),
+                text: '오늘의 물',
+              ),
+              Tab(
+                icon: Icon(Icons.calendar_month, color: Colors.black87),
+                text: '캘린더',
+              ),
             ]),
       ),
       drawer: Drawer(
@@ -84,7 +95,7 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(Static.name.isNotEmpty
-                        ? '${Static.id}님 환영합니다!'
+                        ? '${Static.name}님 환영합니다!'
                         : '로그인을 해주세요.'),
                   )
                 ],
@@ -131,28 +142,34 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
             ListTile(
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Today()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Today()));
               },
               leading: const Icon(Icons.water_drop),
               title: const Text('오늘의 물주기'),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Calendar()));
+              },
               leading: const Icon(Icons.calendar_month),
               title: const Text('한달의 기록'),
             ),
-            if(Static.id.isNotEmpty)  // id가 isNotEmpty이면 마이페이지 화면보이기
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const Mypage(),),
+            if (Static.id.isNotEmpty) // id가 isNotEmpty이면 마이페이지 화면보이기
+              ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Mypage(),
+                    ),
                   );
-              },
-              leading: const Icon(Icons.settings),
-              title: const Text('마이페이지'),
-            )
+                },
+                leading: const Icon(Icons.settings),
+                title: const Text('마이페이지'),
+              )
           ],
         ),
       ),
