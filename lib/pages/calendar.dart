@@ -20,13 +20,13 @@ class _CalendarState extends State<Calendar> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   List data = [];
-  int i=0;
+  int i = 0;
 
   @override
   void initState() {
     super.initState();
-    if(Static.id!=''){
-    readcalendar();
+    if (Static.id != '') {
+      readcalendar();
     }
   }
 
@@ -34,7 +34,7 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Calendar Test"),
+        title: const Text("Calendar"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -51,7 +51,7 @@ class _CalendarState extends State<Calendar> {
                 selectedDayPredicate: (day) {
                   // Use `selectedDayPredicate` to determine which day is currently selected.
                   // If this returns true, then `day` will be marked as selected.
-              
+
                   // Using `isSameDay` is recommended to disregard
                   // the time-part of compared DateTime objects.
                   return isSameDay(_selectedDay, day);
@@ -90,25 +90,24 @@ class _CalendarState extends State<Calendar> {
                 ),
                 calendarStyle: CalendarStyle(
                   outsideDaysVisible: true,
-                  weekendTextStyle: const TextStyle().copyWith(color: Colors.red),
+                  weekendTextStyle:
+                      const TextStyle().copyWith(color: Colors.red),
                 ),
-                eventLoader: (day){
-                  if(data.isEmpty){
-                    return[];
-                  }else{
-
-                      if(day.toString().substring(0,10)==data[i]['date']){
-                        if(i<data.length-1){
-                          print(data);
+                eventLoader: (day) {
+                  if (data.isEmpty) {
+                    return [];
+                  } else {
+                    if (day.toString().substring(0, 10) == data[i]['date']) {
+                      if (i < data.length - 1) {
+                        print(data);
                         i++;
                         return ['hi'];
-                        }
-                      i=0;
-                      return ['hi'];
                       }
-                    
+                      i = 0;
+                      return ['hi'];
+                    }
+
                     return [];
-                    
                   }
                   // if(day.day%2==0){
                   //   return ['hi'];
@@ -118,28 +117,26 @@ class _CalendarState extends State<Calendar> {
               ),
             ),
             ElevatedButton(
-              onPressed: (){
-                if(_selectedDay!=null){
-                Static.date=(_selectedDay.toString()).substring(0,10);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Today(),
-                    )).then((value) => resetDate());
-                }else{
-                  dateUnselect();
-                }
-            }, 
-            child: const Text('물주기 확인하기')
-            ),
+                onPressed: () {
+                  if (_selectedDay != null) {
+                    Static.date = (_selectedDay.toString()).substring(0, 10);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Today(),
+                        )).then((value) => resetDate());
+                  } else {
+                    dateUnselect();
+                  }
+                },
+                child: const Text('물주기 확인하기')),
           ],
         ),
       ),
     );
   }
 
-
-    readcalendar() async {
+  readcalendar() async {
     var url = Uri.parse(
         "http://localhost:8080/Flutter/water_drinking/readcalendar.jsp?water_user=${Static.id}");
     var response = await http.get(url);
@@ -147,13 +144,13 @@ class _CalendarState extends State<Calendar> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
-      for(int i=0;i<result.length;i++){
-        if(Static.goal!=null){
-          if(double.parse(result[i]['sum'])>=Static.goal){
+      for (int i = 0; i < result.length; i++) {
+        if (Static.goal != null) {
+          if (double.parse(result[i]['sum']) >= Static.goal) {
             data.add(result[i]);
           }
-        }else{
-          if(double.parse(result[i]['sum'])>=2000){
+        } else {
+          if (double.parse(result[i]['sum']) >= 2000) {
             data.add(result[i]);
           }
         }
@@ -166,7 +163,7 @@ class _CalendarState extends State<Calendar> {
     Static.date = date;
   }
 
-    dateUnselect() {
+  dateUnselect() {
     showDialog(
         context: context,
         builder: (BuildContext context) {
