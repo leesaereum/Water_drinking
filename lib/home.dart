@@ -129,7 +129,7 @@ class _HomeState extends State<Home> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('로그인 오류'),
+            title: const Text('로그인'),
             content: const Text('로그인 후 다시 시도하여주세요.'),
             actions: [
               Center(
