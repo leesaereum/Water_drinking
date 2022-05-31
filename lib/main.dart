@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:water_drinking_app/home.dart';
 import 'package:water_drinking_app/pages/calendar.dart';
 import 'package:water_drinking_app/pages/login_page.dart';
+import 'package:water_drinking_app/pages/mypage.dart';
 import 'package:water_drinking_app/pages/today.dart';
 import 'package:water_drinking_app/static.dart';
 
