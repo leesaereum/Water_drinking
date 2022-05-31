@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final idController = TextEditingController(text: 'test');
   final pwController = TextEditingController(text: '1234');
-  String Id = '';
+  String id = '';
 
   @override
   Widget build(BuildContext context) {
@@ -29,64 +29,65 @@ class _LoginPageState extends State<LoginPage> {
           foregroundColor: Colors.black,
         ),
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.brown[200],
-                  radius: 50,
-                  child: const Icon(
-                    Icons.free_breakfast,
-                    size: 50,
-                  ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.brown[200],
+                radius: 50,
+                child: const Icon(
+                  Icons.free_breakfast,
+                  size: 50,
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                TextField(
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
                   controller: idController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Input ID(Email)'),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                TextField(
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
                   controller: pwController,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Input PassWord'),
+                  obscureText: true,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      if (idController.text.isEmpty ||
-                          pwController.text.isEmpty) {
-                        inputerror();
-                      } else {
-                        _logIn();
-                      }
-                    },
-                    child: const Text('Log in')),
-                TextButton(
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SigninPage(),
-                        ));
+                    if (idController.text.isEmpty ||
+                        pwController.text.isEmpty) {
+                      inputerror();
+                    } else {
+                      _logIn();
+                    }
                   },
-                  child: const Text('Sign in'),
-                ),
-              ],
-            ),
+                  child: const Text('Log in')),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SigninPage(),
+                      ));
+                },
+                child: const Text('Sign in'),
+              ),
+            ],
           ),
         ),
       ),
@@ -99,17 +100,21 @@ class _LoginPageState extends State<LoginPage> {
         "http://localhost:8080/Flutter/water_drinking/login.jsp?user_id=${idController.text}&user_pw=${pwController.text}");
     var response = await http.get(url);
     setState(() {
-      var JSON = json.decode(utf8.decode(response.bodyBytes));
-      var result = JSON['result'];
+      var jSON = json.decode(utf8.decode(response.bodyBytes));
+      var result = jSON['result'];
       if (result[0]['id'] == '실패') {
         login_fail();
-      } else {
+      }else if(result[0]['leave']!=null){
+        cantLogin(); 
+      }else {
         Static.id = result[0]['id'];
         Static.name = result[0]['name'];
+        // Static.leave = result[0]['leave'];
         Static.goal = int.parse(result[0]['goal']);
+        Static.pw = pwController.text;
         Navigator.of(context).pop();
         Navigator.of(context).pop();
-        Navigator.of(context).pop();
+        // Navigator.of(context).pop();
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -133,6 +138,15 @@ class _LoginPageState extends State<LoginPage> {
       const SnackBar(
         content: Text('아이디와 비밀번호를 입력해주세요.'),
         backgroundColor: Colors.red,
+      ),
+    );
+  }
+
+  cantLogin() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('해당 아이디(탈퇴 아이디)로는 로그인을 할 수 없습니다.'),
+        backgroundColor: Colors.grey,
       ),
     );
   }
