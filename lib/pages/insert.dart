@@ -216,6 +216,12 @@ class _InsertState extends State<Insert> {
                     )),
               ],
             ),
+            Row(
+              children: [
+                Text("${Static.water_kind}"),
+                Text("${Static.water_volume}"),
+              ],
+            ),
             const SizedBox(
               height: 50,
             ),
