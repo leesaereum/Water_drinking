@@ -31,12 +31,13 @@ class _HomeState extends State<Home> {
           '꽃피우기',
           style: TextStyle(color: Colors.white),
         ),
-         leading: IconButton(
-          onPressed: () => Scaffold.of(context).openDrawer() ,
-          icon: const Icon(Icons.menu,
+        leading: IconButton(
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          icon: const Icon(
+            Icons.menu,
             color: Colors.white,
           ),
-          ),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -70,8 +71,10 @@ class _HomeState extends State<Home> {
               lineHeight: 20.0,
               leading: const Text('0ml'),
               trailing: const Text('2000ml'),
-              percent: Static.water.toDouble()/Static.goal.toDouble(),
-              center: Static.id.isEmpty ? const Text('0%'): Text('${Static.water/Static.goal*100}%'),
+              percent: Static.water.toDouble() / Static.goal.toDouble(),
+              center: Static.id.isEmpty
+                  ? const Text('0%')
+                  : Text('${Static.water / Static.goal * 100}%'),
               progressColor: Colors.red,
             ),
           ),
@@ -95,12 +98,11 @@ class _HomeState extends State<Home> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       List result = JSON['result'];
-      //종류가 물일 때만 용량 더해지기 
-      if(Static.water_kind == "물"){
+      //종류가 물일 때만 용량 더해지기
       for (int i = 0; i < result.length; i++) {
-        sum += int.parse(result[i]['volume']);
+        if (result[i]['kind'] == '물') sum += int.parse(result[i]['volume']);
       }
-      }
+
       Static.water = sum;
       if (Static.water < Static.goal * 0.25) {
         Static.image = 'images/1.jpg';
