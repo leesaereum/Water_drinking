@@ -16,8 +16,8 @@ class _InsertState extends State<Insert> {
   //용량 텍스트필드로 받기
   final TextEditingController volumeController = TextEditingController();
   var date = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd]);
-  //버튼 클릭
-  late Color buttonClick = Colors.indigo;
+  //late String water_kind ="";
+  //late String water_volume="";
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,9 @@ class _InsertState extends State<Insert> {
               "Today",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             Text(
               date,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w200),
@@ -52,9 +55,8 @@ class _InsertState extends State<Insert> {
                   //물 버튼
                   ElevatedButton.icon(
                     onPressed: () {
-                      Static.water_kind = "물";
                       setState(() {
-                        buttonColor();
+                        Static.water_kind = "물";
                       });
                     },
                     label: const Text("물"),
@@ -78,7 +80,9 @@ class _InsertState extends State<Insert> {
                   //커피버튼
                   ElevatedButton.icon(
                     onPressed: () {
-                      Static.water_kind = "커피";
+                      setState(() {
+                        Static.water_kind = "커피";
+                      });
                     },
                     label: const Text("커피"),
                     icon: const Icon(Icons.coffee),
@@ -101,7 +105,9 @@ class _InsertState extends State<Insert> {
                   //탄산버튼
                   ElevatedButton.icon(
                     onPressed: () {
-                      Static.water_kind = "탄산";
+                      setState(() {
+                        Static.water_kind = "탄산";
+                      });
                     },
                     label: const Text("탄산"),
                     icon: const Icon(Icons.local_drink_rounded),
@@ -124,7 +130,9 @@ class _InsertState extends State<Insert> {
                   //차 버튼
                   ElevatedButton.icon(
                     onPressed: () {
-                      Static.water_kind = "차";
+                      setState(() {
+                        Static.water_kind = "차";
+                      });
                     },
                     label: const Text("차"),
                     icon: const Icon(Icons.emoji_food_beverage),
@@ -147,11 +155,13 @@ class _InsertState extends State<Insert> {
                   //주스 버튼
                   ElevatedButton.icon(
                     onPressed: () {
-                      Static.water_kind = "주스";
+                      setState(() {
+                        Static.water_kind = "주스";
+                      });
                     },
                     label: const Text("주스"),
                     icon: const Icon(Icons.wine_bar),
-                     style: ButtonStyle(
+                    style: ButtonStyle(
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.hovered))
@@ -189,7 +199,9 @@ class _InsertState extends State<Insert> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Static.water_volume = "100";
+                      setState(() {
+                        Static.water_volume = "100";
+                      });
                     },
                     child: const Text(
                       "100ml",
@@ -199,7 +211,9 @@ class _InsertState extends State<Insert> {
                     )),
                 TextButton(
                   onPressed: () {
-                    Static.water_volume = "200";
+                    setState(() {
+                      Static.water_volume = "200";
+                    });
                   },
                   child: const Text(
                     "200ml",
@@ -208,7 +222,9 @@ class _InsertState extends State<Insert> {
                 ),
                 TextButton(
                     onPressed: () {
-                      Static.water_volume = "300";
+                      setState(() {
+                        Static.water_volume = "300";
+                      });
                     },
                     child: const Text(
                       "300ml",
@@ -216,20 +232,76 @@ class _InsertState extends State<Insert> {
                     )),
               ],
             ),
+            const SizedBox(
+              height: 50,
+            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${Static.water_kind}"),
-                Text("${Static.water_volume}"),
+                OutlinedButton(
+                    onPressed: () {
+                      //
+                    },
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.teal[50],
+                      minimumSize: const Size(80, 40),
+                      side: const BorderSide(
+                        color: Colors.teal,
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Text("${Static.water_kind}",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 18,
+                    ),
+                    ))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OutlinedButton(
+                    onPressed: () {
+                      //
+                    },
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.teal[50],
+                      minimumSize: const Size(80, 40),
+                      side: const BorderSide(
+                        color: Colors.teal,
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Text("${Static.water_volume}",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 18,
+                    ),
+                    ))
               ],
             ),
             const SizedBox(
               height: 50,
             ),
             ElevatedButton(
-                onPressed: () {
-                  insertWater();
-                },
-                child: const Text('더하기'))
+              onPressed: () {
+                insertWater();
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.teal[400],
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                minimumSize: Size(100, 50),
+                //textStyle:Colors.black87,
+              ),
+              child: const Text('더 하 기',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w600
+              ),
+              ),
+            )
           ],
         ),
       ),
@@ -268,17 +340,6 @@ class _InsertState extends State<Insert> {
     );
   }
 
-  //클릭했을때 버튼색 조정하기
-  buttonColor() {
-    setState(() {
-      if (buttonClick == Colors.indigo) {
-        Colors.red;
-      } else {
-        Colors.indigo;
-      }
-    });
-  }
-
   //컵 바꾸기 dialog
   volumeDialog(BuildContext context) {
     showDialog(
@@ -314,7 +375,9 @@ class _InsertState extends State<Insert> {
               TextButton(
                 onPressed: () {
                   //static에 넣기
-                  Static.water_volume = volumeController.text;
+                  setState(() {
+                    Static.water_volume = volumeController.text;
+                  });
                   Navigator.of(context).pop();
                 },
                 child: const Text("OK"),
