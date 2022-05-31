@@ -49,19 +49,12 @@ class _CalendarState extends State<Calendar> {
                 focusedDay: _focusedDay,
                 calendarFormat: _calendarFormat,
                 selectedDayPredicate: (day) {
-                  // Use `selectedDayPredicate` to determine which day is currently selected.
-                  // If this returns true, then `day` will be marked as selected.
-
-                  // Using `isSameDay` is recommended to disregard
-                  // the time-part of compared DateTime objects.
                   return isSameDay(_selectedDay, day);
                 },
                 onDaySelected: (selectedDay, focusedDay) {
                   if (!isSameDay(_selectedDay, selectedDay)) {
-                    // Call `setState()` when updating the selected day
                     setState(() {
                       _selectedDay = selectedDay;
-                      // print(_selectedDay);
                       _focusedDay = focusedDay;
                     });
                   }
@@ -149,6 +142,7 @@ class _CalendarState extends State<Calendar> {
         if (Static.goal != null) {
           if (double.parse(result[i]['sum']) >= Static.goal) {
             data.add(result[i]);
+            print(data);
           }
         } else {
           if (double.parse(result[i]['sum']) >= 2000) {
