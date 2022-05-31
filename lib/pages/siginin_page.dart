@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:water_drinking_app/static.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -49,6 +51,8 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
+                  //inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'),),], // 해당 정규식 안되서 일단 키보드 타입만 변경
+                  // 정규식 넣을 때마다 입력안되어서 일단 주석처리 해둠
                   controller: idController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -59,6 +63,7 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),], 
                   controller: nickController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -69,6 +74,7 @@ class _SigninPageState extends State<SigninPage> {
                   height: 20,
                 ),
                 TextField(
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),],
                   controller: pwController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -123,9 +129,14 @@ class _SigninPageState extends State<SigninPage> {
 
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
+      var result = JSON['result'];
       var ids = JSON['result']['id'];
+
       if (ids == idController.text) {
         errorSnackbar();
+        if(Static.leave.isNotEmpty){
+            cantSignin();
+          }
       } else {
         join();
       }
@@ -140,6 +151,7 @@ class _SigninPageState extends State<SigninPage> {
     setState(() {
       var JSON = json.decode(utf8.decode(response.bodyBytes));
       join_result = JSON['result'];
+  
       if (join_result == 'OK') {
         sucessJoin();
       } else {
@@ -181,4 +193,14 @@ class _SigninPageState extends State<SigninPage> {
       backgroundColor: Colors.red,
     ));
   }
+
+  cantSignin() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('해당 아이디(탈퇴 아이디)로는 회원가입을 할 수 없습니다.'),
+        backgroundColor: Colors.grey,
+      ),
+    );
+   }
+
 }
