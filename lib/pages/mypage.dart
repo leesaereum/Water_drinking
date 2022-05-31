@@ -207,7 +207,8 @@ class _MypageState extends State<Mypage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: const Text('탈퇴가 완료되었습니다.'),
+            title: const Text('탈퇴'),
+            content: const Text('탈퇴 하시겠습니까?'),
             actions: [
               ElevatedButton(
                   onPressed: () {
@@ -217,7 +218,12 @@ class _MypageState extends State<Mypage> {
                           builder: (context) => const LoginPage(),
                         )).then((value) => rebuild());
                   },
-                  child: const Text('로그인 화면으로 가기'))
+                  child: const Text('네')),
+              ElevatedButton(
+                  onPressed: () {
+                   Navigator.of(context).pop();
+                  },
+                  child: const Text('아니오'))
             ],
           );
         });
