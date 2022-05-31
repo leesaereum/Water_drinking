@@ -8,13 +8,12 @@ class UpdatePage extends StatefulWidget {
   final String cardKind;
   final String cardVolume;
 
-  const UpdatePage(
-      {Key? key,
-      required this.cardId,
-      required this.cardKind,
-      required this.cardVolume,
-      })
-      : super(key: key);
+  const UpdatePage({
+    Key? key,
+    required this.cardId,
+    required this.cardKind,
+    required this.cardVolume,
+  }) : super(key: key);
 
   @override
   State<UpdatePage> createState() => _UpdatePageState();
@@ -25,11 +24,10 @@ class _UpdatePageState extends State<UpdatePage> {
   late TextEditingController kindController;
   late TextEditingController volumeController;
 
-
   late String waterId;
   late String waterKind;
   late String waterVolume;
- 
+
   late String result;
 
   @override
@@ -38,7 +36,6 @@ class _UpdatePageState extends State<UpdatePage> {
     idController = TextEditingController(text: widget.cardId);
     kindController = TextEditingController(text: widget.cardKind);
     volumeController = TextEditingController(text: widget.cardVolume);
-    
   }
 
   @override
@@ -49,12 +46,12 @@ class _UpdatePageState extends State<UpdatePage> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(30.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
                 controller: kindController,
-                //decoration: const InputDecoration(labelText: '수정하세요.'),
                 readOnly: true,
               ),
               TextField(
@@ -70,7 +67,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   waterId = idController.text;
                   waterKind = kindController.text;
                   waterVolume = volumeController.text;
-      
+
                   updateAction();
                 },
                 child: const Text("수정하기"),
