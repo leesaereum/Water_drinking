@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:water_drinking_app/main.dart';
 import 'package:water_drinking_app/pages/update_page.dart';
 import 'package:water_drinking_app/static.dart';
 
@@ -55,8 +56,7 @@ class _TodayState extends State<Today> {
                                   width: 120,
                                   height: 50,
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Row(
                                         children: [
@@ -143,7 +143,12 @@ class _TodayState extends State<Today> {
 
       if (result == "OK") {
         deletesuccessSnackbar(context);
-        rebuild();
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Main(),
+            ));
       } else {
         deleteerrorSnackbar(context);
       }

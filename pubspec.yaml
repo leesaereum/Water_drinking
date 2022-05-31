@@ -37,6 +37,8 @@ dependencies:
   http: ^0.13.4
   date_format: ^2.0.6
   percent_indicator: ^4.2.2
+  table_calendar: ^3.0.6
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
