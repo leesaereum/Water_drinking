@@ -116,6 +116,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "percent_indicator",
+      "rootUri": "file:///Users/tj/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-4.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/tj/Documents/Development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -176,7 +182,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-05-30T09:38:39.091851Z",
+  "generated": "2022-05-31T00:52:58.650677Z",
   "generator": "pub",
   "generatorVersion": "2.17.1"
 }

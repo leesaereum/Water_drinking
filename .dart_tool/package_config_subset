@@ -66,6 +66,10 @@ path
 2.12
 file:///Users/tj/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.1/
 file:///Users/tj/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.1/lib/
+percent_indicator
+2.12
+file:///Users/tj/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-4.2.2/
+file:///Users/tj/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-4.2.2/lib/
 source_span
 2.14
 file:///Users/tj/Documents/Development/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.2/
@@ -112,6 +116,6 @@ file:///Users/tj/Documents/Development/flutter/packages/flutter_test/
 file:///Users/tj/Documents/Development/flutter/packages/flutter_test/lib/
 water_drinking_app
 2.17
-file:///Users/tj/git/Water_drinking/Water_drinking/
-file:///Users/tj/git/Water_drinking/Water_drinking/lib/
+file:///Users/tj/git/Water_drinking/
+file:///Users/tj/git/Water_drinking/lib/
 2

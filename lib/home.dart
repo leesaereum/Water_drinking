@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:water_drinking_app/pages/insert.dart';
 import 'package:water_drinking_app/pages/login_page.dart';
 import 'package:water_drinking_app/static.dart';
@@ -60,6 +61,23 @@ class _HomeState extends State<Home> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
+            child: LinearPercentIndicator(
+              width: 300.0,
+              animation: true,
+              animationDuration: 1000,
+              lineHeight: 20.0,
+              leading: const Text('0ml'),
+              trailing: const Text('2000ml'),
+              percent: Static.water.toDouble()/Static.goal.toDouble(),
+              center: Static.id.isEmpty ? const Text('0%'): Text('${Static.water/Static.goal*100}%'),
+              progressColor: Colors.red,
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
           Image.asset(Static.image),
           Text(nickname),
         ],
