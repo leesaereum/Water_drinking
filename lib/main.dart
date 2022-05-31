@@ -95,7 +95,7 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(Static.name.isNotEmpty
-                        ? '${Static.id}님 환영합니다!'
+                        ? '${Static.name}님 환영합니다!'
                         : '로그인을 해주세요.'),
                   )
                 ],
@@ -142,14 +142,18 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
             ListTile(
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Today()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Today()));
               },
               leading: const Icon(Icons.water_drop),
               title: const Text('오늘의 물주기'),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Calendar()));
+              },
               leading: const Icon(Icons.calendar_month),
               title: const Text('한달의 기록'),
             ),
