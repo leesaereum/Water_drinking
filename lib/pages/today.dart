@@ -47,13 +47,15 @@ class _TodayState extends State<Today> {
                             : const EdgeInsets.fromLTRB(25, 10, 25, 0),
                         child: Card(
                           color: Colors.amberAccent[100],
-                          child: Padding(
+                          child: 
+                          Padding(
                             padding: const EdgeInsets.all(20.0),
-                            child: Row(
+                            child: 
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  width: 120,
+                                  width: 150,
                                   height: 50,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +76,7 @@ class _TodayState extends State<Today> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  width: 100,
+                                  width: 70,
                                 ),
                                 IconButton(
                                   onPressed: () {
