@@ -21,7 +21,6 @@ class _CalendarState extends State<Calendar> {
   DateTime? _selectedDay;
   List data = [];
   int i = 0;
-  Map<DateTime, dynamic> eventSource = {};
 
   @override
   void initState() {
@@ -62,6 +61,7 @@ class _CalendarState extends State<Calendar> {
                 },
                 onFormatChanged: (format) {
                   if (_calendarFormat != format) {
+                    // Call `setState()` when updating calendar format
                     setState(() {
                       _calendarFormat = format;
                     });
@@ -102,10 +102,10 @@ class _CalendarState extends State<Calendar> {
 
                     return [];
                   }
-                  if (day.day % 2 == 0) {
-                    return ['hi'];
-                  }
-                  return [];
+                  // if(day.day%2==0){
+                  //   return ['hi'];
+                  // }
+                  // return[];
                 },
               ),
             ),
@@ -142,7 +142,7 @@ class _CalendarState extends State<Calendar> {
         if (Static.goal != null) {
           if (double.parse(result[i]['sum']) >= Static.goal) {
             data.add(result[i]);
-            eventSource = data['date'].toSet();
+            print(data);
           }
         } else {
           if (double.parse(result[i]['sum']) >= 2000) {

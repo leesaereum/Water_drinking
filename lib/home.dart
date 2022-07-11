@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
             child: LinearPercentIndicator(
-              width: 300.0,
+              width: 270.0,
               animation: true,
               animationDuration: 1000,
               lineHeight: 40.0,

@@ -149,8 +149,8 @@ class _SigninPageState extends State<SigninPage> {
   }
 
   join() async {
-    var url = Uri.parse(
-        'http://localhost:8080/Flutter/water_drinking/join.jsp?id=${idController.text}&name=${nickController.text}&pw=${pwController.text}');
+    var url = Uri.parse('http://localhost:8080/Flutter/water_drinking/join.jsp?' +
+        'id=${idController.text}&name=${nickController.text}&pw=${pwController.text}');
     var response = await http.get(url);
 
     setState(() {
