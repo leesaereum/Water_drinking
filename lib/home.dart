@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
+            padding: const EdgeInsets.fromLTRB(30, 0, 5, 0),
             child: LinearPercentIndicator(
               width: 270.0,
               animation: true,
