@@ -29,61 +29,63 @@ class _LoginPageState extends State<LoginPage> {
           foregroundColor: Colors.black,
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'images/logo2.png',
-                width: 300,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: TextField(
-                  controller: idController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Input ID(Email)'),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'images/logo2.png',
+                  width: 300,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: TextField(
-                  controller: pwController,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Input PassWord'),
-                  obscureText: true,
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    controller: idController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input ID(Email)'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    controller: pwController,
+                    keyboardType: TextInputType.visiblePassword,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Input PassWord'),
+                    obscureText: true,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      if (idController.text.isEmpty ||
+                          pwController.text.isEmpty) {
+                        inputerror();
+                      } else {
+                        _logIn();
+                      }
+                    },
+                    child: const Text('Log in')),
+                TextButton(
                   onPressed: () {
-                    if (idController.text.isEmpty ||
-                        pwController.text.isEmpty) {
-                      inputerror();
-                    } else {
-                      _logIn();
-                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SigninPage(),
+                        ));
                   },
-                  child: const Text('Log in')),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SigninPage(),
-                      ));
-                },
-                child: const Text('Sign in'),
-              ),
-            ],
+                  child: const Text('Sign in'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
